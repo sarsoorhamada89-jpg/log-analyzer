@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>محلل لوجز الأمان</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>محلل لوجز الأمان</h1>
+<p class="sub">ارفع لوج SSH أو Apache، والأداة تكتشف أنماط الهجوم بقواعد واضحة، وبعدها تقدر تطلب ملخصًا بالذكاء الاصطناعي.</p>
+
+<section class="panel">
+  <div class="row tabs" role="group" aria-label="نوع اللوج">
+    <button id="tSsh" aria-pressed="true">SSH (auth.log)</button>
+    <button id="tApa" aria-pressed="false">Apache (access.log)</button>
+  </div>
+  <textarea id="log" aria-label="محتوى اللوج" spellcheck="false" placeholder="الصق اللوج هنا أو ارفع ملف أو استخدم Sample"></textarea>
+  <div class="row mt">
+    <button class="btn primary" id="go">حلّل اللوج</button>
+    <button class="btn" id="sample">حمّل Sample</button>
+    <label class="btn lbl">رفع ملف<input type="file" id="file" accept=".log,.txt" hidden></label>
+  </div>
+</section>
+
+<div id="result" hidden>
+  <div class="stats" id="stats"></div>
+  <section class="panel">
+    <h2>النتائج</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>الهجوم</th><th>الخطورة</th><th>IP</th><th>العدد</th><th>أول ظهور</th><th>آخر ظهور</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+    <p class="note" id="empty" hidden>مفيش أنماط هجوم اتكشفت في اللوج ده.</p>
+    <p class="note">الكشف rule-based، فممكن يطلع False Positives. راجع كل نتيجة قبل ما تتصرف.</p>
+  </section>
+  <section class="panel">
+    <h2>ملخص الذكاء الاصطناعي</h2>
+    <p class="note">بيتبعت الـ findings بس للـ endpoint، مش اللوجز الخام.</p>
+    <button class="btn primary" id="ai">AI Summary</button>
+    <div id="aiOut" role="status"></div>
+  </section>
+</div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

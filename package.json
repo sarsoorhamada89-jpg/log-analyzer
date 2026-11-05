@@ -1,0 +1,5 @@
+{
+  "name": "log-analyzer",
+  "private": true,
+  "type": "module"
+}
